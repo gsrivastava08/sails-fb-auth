@@ -9,11 +9,21 @@
 
  module.exports = {
 
+ 	home: function(req, res){
+ 		if(req.session.user==null)
+	 		res.redirect('user/login');
+	 	else
+	 		res.redirect('/user/dashboard');
+ 	},
+
    login: function (req, res) {
      res.view();
    },
 
    dashboard: function (req, res) {
+   	if(req.session.user==null)
+   		res.redirect('user/login');
+   	else	
      res.view();
    },
 
@@ -24,7 +34,7 @@
    },
 
    'facebook': function (req, res, next) {
-      passport.authenticate('facebook', { scope: ['email', 'user_about_me']},
+      passport.authenticate('facebook', { scope: ['email']},
          function (err, user) {
              req.logIn(user, function (err) {
              if(err) {

@@ -13,7 +13,10 @@
        type: 'string',
        required: true,
        unique: true
-     }
+     },
 
+     full_name : {
+     	type : 'string'
+     }
    }
  };
